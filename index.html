@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kopfquiz — Mathe-Training mit Genius KI</title>
+  <meta name="description" content="Kopfrechnen-Training für iOS mit täglichem Streak, Daily Challenge, Duell-Modus und Genius KI-Coach. Einmalig €12,99 — kein Abo.">
+  <meta property="og:title" content="Kopfquiz — Mathe-Training mit Genius KI">
+  <meta property="og:description" content="Kopfrechnen-Training für iOS mit täglichem Streak, Daily Challenge, Duell-Modus und Genius KI-Coach. Einmalig €12,99 — kein Abo.">
+  <meta property="og:image" content="https://lennoxk828.github.io/kopfquiz-legal/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --bg: #000;
+      --text: #F5F5F5;
+      --muted: rgba(245,245,245,0.65);
+      --quiet: rgba(245,245,245,0.4);
+      --purple: #5B3FFF;
+      --lime: #C8FF3D;
+      --cta: #FFAA88;
+      --line: rgba(255,255,255,0.06);
+      --glass: rgba(91, 63, 255, 0.12);
+      --glass-border: rgba(255,255,255,0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background-color: var(--bg);
+      background-image: radial-gradient(circle, rgba(91,63,255,0.15) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 14px clamp(1rem, 4vw, 3rem);
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo,
+    .hero-numbers {
+      font-family: SF Mono, Menlo, monospace;
+      letter-spacing: 0.08em;
+    }
+
+    .logo {
+      color: var(--lime);
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-weight: 800;
+    }
+
+    .nav-button {
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 8px 20px;
+      color: #F5F5F5;
+      text-decoration: none;
+      font-weight: 650;
+      font-size: 0.92rem;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 2rem;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 980px;
+      color: #fff;
+      font-size: clamp(2.5rem, 9vw, 6rem);
+      font-weight: 850;
+      line-height: 0.98;
+      letter-spacing: 0;
+      animation-delay: 0s;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+      animation-delay: 0.1s;
+    }
+
+    .badge {
+      display: inline-flex;
+      height: 54px;
+      text-decoration: none;
+      animation-delay: 0.2s;
+    }
+
+    .badge svg {
+      display: block;
+      width: 174px;
+      height: 54px;
+    }
+
+    .mockups {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.8rem, 3vw, 1.5rem);
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .device {
+      aspect-ratio: 9 / 19.5;
+      width: clamp(100px, 20vw, 180px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.75rem;
+      box-shadow: 0 24px 80px rgba(91,63,255,0.16);
+    }
+
+    .hero-numbers {
+      position: absolute;
+      color: rgba(200,255,61,0.08);
+      font-size: clamp(5rem, 20vw, 16rem);
+      font-weight: 900;
+      pointer-events: none;
+      transform: translateY(-14vh);
+      z-index: -1;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .feature-card {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(91, 63, 255, 0.12);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 28px;
+      animation-delay: 0.3s;
+    }
+
+    .feature-card:nth-child(2) { animation-delay: 0.4s; }
+    .feature-card:nth-child(3) { animation-delay: 0.5s; }
+    .feature-card:nth-child(4) { animation-delay: 0.6s; }
+
+    .feature-card .emoji {
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 0.35rem;
+      color: var(--lime);
+      font-size: 1.1rem;
+      line-height: 1.25;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .lifetime-section {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 3rem 2rem;
+      border-radius: 32px;
+      background: rgba(91,63,255,0.15);
+      text-align: center;
+      animation-delay: 0.6s;
+    }
+
+    .lifetime-section h2 {
+      margin: 0 0 1.5rem;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .lifetime-section ul {
+      display: grid;
+      gap: 0.6rem;
+      max-width: 330px;
+      margin: 0 auto 2rem;
+      padding: 0;
+      color: var(--muted);
+      list-style: none;
+      text-align: left;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+    }
+
+    .lifetime-section li::before {
+      content: "✓ ";
+      color: var(--lime);
+      font-weight: 800;
+    }
+
+    .cta {
+      display: inline-block;
+      border: none;
+      border-radius: 28px;
+      padding: 16px 40px;
+      background: #FFAA88;
+      color: #111;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .made-in-germany {
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer a {
+      color: rgba(245,245,245,0.4);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .hero h1,
+    .hero p,
+    .badge,
+    .feature-card,
+    .lifetime-section {
+      animation-name: fadeInUp;
+      animation-duration: 0.6s;
+      animation-fill-mode: both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 640px) {
+      .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 520px) {
+      .site-nav { padding-inline: 1rem; }
+      .nav-button { padding: 7px 16px; }
+      .hero { padding-inline: 1rem; }
+      .mockups { gap: 0.55rem; }
+      .device { border-radius: 20px; }
+      .lifetime-section { margin-inline: 1rem; }
+      footer { gap: 1rem 1.5rem; }
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #FAFAFA;
+        --text: #111;
+        --muted: rgba(17,17,17,0.65);
+        --quiet: rgba(17,17,17,0.4);
+        --line: rgba(0,0,0,0.08);
+      }
+
+      .site-nav { background: rgba(250,250,250,0.85); }
+      .nav-button {
+        border-color: rgba(0,0,0,0.2);
+        color: #111;
+      }
+      .hero h1 { color: #111; }
+      .device {
+        background: rgba(0,0,0,0.04);
+        border-color: rgba(0,0,0,0.1);
+        color: rgba(17,17,17,0.35);
+      }
+      .feature-card {
+        background: rgba(91,63,255,0.07);
+        border: 1px solid rgba(0,0,0,0.08);
+      }
+      .made-in-germany,
+      footer { border-top-color: rgba(0,0,0,0.08); }
+      footer a { color: rgba(17,17,17,0.4); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Hauptnavigation">
+    <a class="logo" href="#">KOPFQUIZ</a>
+    <a class="nav-button" href="#appstore">App Store</a>
+  </nav>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-numbers" aria-hidden="true">7×8</div>
+      <h1 id="hero-title">Mathe-Training mit Genius KI</h1>
+      <p>Kopfrechnen, Duelle und ein KI-Coach, der lokal auf deinem iPhone läuft. Kein Abo, keine Cloud.</p>
+      <a class="badge" id="appstore" href="#appstore" aria-label="Kopfquiz im App Store öffnen">
+        <svg viewBox="0 0 174 54" role="img" aria-labelledby="badge-title">
+          <title id="badge-title">Laden im App Store</title>
+          <rect width="174" height="54" rx="12" fill="#000"/>
+          <rect x="0.5" y="0.5" width="173" height="53" rx="11.5" fill="none" stroke="#A6A6A6"/>
+          <path fill="#fff" d="M33 14c1.2-1.5 2-3.3 1.8-5.2-1.7.1-3.7 1.1-4.9 2.5-1.1 1.2-2 3.1-1.8 4.9 1.9.2 3.7-.9 4.9-2.2Zm7.4 20.1c-.7 1.6-1.1 2.3-2 3.8-1.3 2-3.1 4.5-5.4 4.5-2 .1-2.5-1.3-5.2-1.3s-3.3 1.3-5.2 1.3c-2.3.1-4.1-2.2-5.4-4.2-3.7-5.7-4.1-12.4-1.8-16 1.6-2.5 4.1-3.9 6.5-3.9 2.5 0 4 1.3 6 1.3s3.2-1.3 6-1.3c2.2 0 4.6 1.2 6.2 3.2-5.5 3-4.6 10.9-.3 12.6Z"/>
+          <text x="55" y="22" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="500">Laden im</text>
+          <text x="55" y="39" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="700">App Store</text>
+        </svg>
+      </a>
+      <div class="mockups" aria-label="Screenshot Platzhalter">
+        <div class="device">Screenshot 1</div>
+        <div class="device">Screenshot 2</div>
+        <div class="device">Screenshot 3</div>
+      </div>
+    </section>
+
+    <section class="features" aria-label="Funktionen">
+      <article class="feature-card">
+        <span class="emoji" aria-hidden="true">🔥</span>
+        <h3>Streak-System</h3>
+        <p>Tägliches Training, das sich aufbaut</p>
+      </article>
+      <article class="feature-card">
+        <span class="emoji" aria-hidden="true">⚡</span>
+        <h3>Daily Challenge</h3>
+        <p>10 Fragen, 60 Sekunden, gleiche für alle</p>
+      </article>
+      <article class="feature-card">
+        <span class="emoji" aria-hidden="true">⚔️</span>
+        <h3>Duell-Modus</h3>
+        <p>Live-Showdown gegen Bots mit Herzen</p>
+      </article>
+      <article class="feature-card">
+        <span class="emoji" aria-hidden="true">✨</span>
+        <h3>Genius KI-Coach</h3>
+        <p>On-device Apple Intelligence, kein Tracking</p>
+      </article>
+    </section>
+
+    <section class="lifetime-section" aria-labelledby="lifetime-title">
+      <h2 id="lifetime-title">Einmalig €12,99 — für immer</h2>
+      <ul>
+        <li>Unbegrenzte Herzen</li>
+        <li>Keine Werbung</li>
+        <li>Genius freigeschaltet</li>
+        <li>Updates inklusive</li>
+      </ul>
+      <a class="cta" href="#appstore">Im App Store öffnen →</a>
+    </section>
+
+    <section class="made-in-germany" aria-label="Herkunft und Kontakt">
+      Made in Germany · Solo-Indie · DSGVO-konform · oliver.kornmann66@gmail.com
+    </section>
+  </main>
+
+  <footer>
+    <a href="https://lennoxk828.github.io/kopfquiz-legal/privacy">Datenschutz</a>
+    <a href="https://lennoxk828.github.io/kopfquiz-legal/terms">Bedingungen</a>
+    <a href="https://lennoxk828.github.io/kopfquiz-legal/imprint">Impressum</a>
+  </footer>
+</body>
+</html>
